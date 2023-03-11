@@ -26,8 +26,10 @@ import java.util.Properties;
 @PropertySource("classpath:db.properties")
 @ComponentScan("web")
 public class DatabaseConfig {
-    @Resource
+
     private Environment env;
+@Autowired
+    public DatabaseConfig(Environment env){this.env=env;}
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
@@ -47,6 +49,7 @@ public class DatabaseConfig {
         return manager;
 
     }
+
 
     private Properties getHibernateProperties() {
         try {
@@ -76,8 +79,6 @@ public class DatabaseConfig {
         ds.setMinEvictableIdleTimeMillis(Long.valueOf(env.getRequiredProperty("db.minEvictableIdleTimeMillis")));
         ds.setTestOnBorrow(Boolean.valueOf(env.getRequiredProperty("db.testOnBorrow")));
         ds.setValidationQuery(env.getRequiredProperty("db.validationQuery"));
-
-
         return ds;
     }
 
