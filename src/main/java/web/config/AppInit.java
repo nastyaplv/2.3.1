@@ -2,7 +2,9 @@ package web.config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.servlet.*;
 import java.util.EnumSet;
@@ -40,4 +42,6 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         aContext.addFilter("hiddenHttpMethodFilter",
                 new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true, "/*");
     }
+
+
 }
